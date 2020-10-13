@@ -1,4 +1,4 @@
-var cart = {}; // корзина
+ var cart = {}; // корзина
 
 function init() {
     //вычитуем файл goods.json
@@ -26,13 +26,14 @@ function goodsOut(data) {
 function addToCart() {
     //добавляем товар в корзину
     var id = $(this).attr('data-id');
-     console.log(id);
-    if (cart[id]==undefined) {
+
+    if (cart[id] == undefined) {
         cart[id] = 1; //если в корзине нет товара - делаем равным 1
     }
     else {
         cart[id]++; //если такой товар есть - увеличиваю на единицу
     }
+    
     showMiniCart();
     saveCart();
 }
@@ -44,11 +45,18 @@ function saveCart() {
 
 function showMiniCart() {
     //показываю мини корзину
-    var sum  = 0;
+    /*var sum  = 0;
     for (var key of Object.values(cart)) {
-        sum +=  key+ '<br>';
+        alert(key);
+        sum +=  key + cart[key] + '<br>';
+    }*/
+    var out = "";
+    for (var key in cart) {
+        
+        out +=  key + '==' + cart[key] + '<br>';
+        //console.log(key.name);
     }
-    $('.mini-cart').html(sum);
+    $('.mini-cart').html(out);
 }
 
 function loadCart() {
