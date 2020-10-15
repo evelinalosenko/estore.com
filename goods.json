@@ -1,29 +1,29 @@
 {
   "1": {
-    "name": "Яблоки",
+    "name": "Apple",
     "cost": 44.2,
-    "description": "Сочные спелы",
+    "description": "Red",
     "order": 3,
     "img" : "apple.png"
   },
   "2": {
-    "name": "Вишня",
+    "name": "Cherry",
     "cost": 54.6,
-    "description": "Кислая красная",
+    "description": "Dark red",
     "order": 5,
     "img" : "cherry.png"
   },
   "3": {
-    "name": "Виноград",
+    "name": "Grape",
     "cost": 94.2,
-    "description": "Сладкий, синий и зеленый",
+    "description": "Green",
     "order": 1,
     "img" : "grape.png"
   },
   "4": {
-    "name": "Арбуз",
+    "name": "Watermelon",
     "cost": 23,
-    "description": "Сладкий красный",
+    "description": "Big",
     "order": 8,
     "img" : "watermelon.png"
   }
