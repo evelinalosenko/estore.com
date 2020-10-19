@@ -5,6 +5,9 @@ switch ($action){
     case 'init':
         init();
         break;
+    case 'selectOneGoods':
+        selectOneGoods();
+        break;
 }
 
 ?>
