@@ -8,6 +8,10 @@ switch ($action){
     case 'selectOneGoods':
         selectOneGoods();
         break;
+    case 'updateGoods':
+        updateGoods();
+        break;
+
 }
 
 ?>

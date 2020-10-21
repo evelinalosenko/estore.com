@@ -43,3 +43,24 @@ function selectOneGoods(){
     }
     mysqli_close($conn);
 }
+function updateGoods(){
+    $conn = connect();
+    $id = $_POST['id'];
+    $newName = $_POST['newName'];
+    $newCost = $_POST['newCost'];
+    $newDescript = $_POST['newDescript'];
+    $newImg = $_POST['newImg'];
+    $newOrd = $_POST['newOrd'];
+
+    
+    $sql = "UPDATE goods SET name = '$newName', cost = '$newCost', description = '$newDescript', ord = '$newOrd', img = '$newImg' WHERE id='$id' ";
+
+    if (mysqli_query($conn, $sql)) {
+        echo "Record updated successfully";
+    } 
+    else {
+        echo "Error updating record: " . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
+}
