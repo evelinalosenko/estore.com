@@ -57,7 +57,7 @@ function selectGoods(){
 }
 function saveToDb(){
     var id = $('#gid').val();
-    if(id != undefined){
+    if(id != 0){
         $.post(
         "core.php",
             {
@@ -71,9 +71,39 @@ function saveToDb(){
                 
             },
             function (data){
-                console.log(data);
+                if(data == 1){
+                    init();
+                }
+                else{
+                    console.log(data);
+                }
             }
         );
+    }
+    else{
+        $.post(
+        "core.php",
+            {
+                "action" : "newGoods",
+                "id" : 0,
+                "newName" : $('#newName').val(),
+                "newCost" : $('#newCost').val(),
+                "newDescript" : $('#newDescript').val(),
+                "newImg" : $('#newImg').val(),
+                "newOrd" : $('#newOrd').val()
+                
+            },
+            function (data){
+                if(data == 1){
+                    init();
+                }
+                else{
+                    alert("New record added!")
+                    console.log(data);
+                }
+            }
+        );
+        
     }
 }
 

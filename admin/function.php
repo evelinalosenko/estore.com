@@ -64,3 +64,22 @@ function updateGoods(){
 
     mysqli_close($conn);
 }
+function newGoods(){
+    $conn = connect();
+    $newName = $_POST['newName'];
+    $newCost = $_POST['newCost'];
+    $newDescript = $_POST['newDescript'];
+    $newImg = $_POST['newImg'];
+    $newOrd = $_POST['newOrd'];
+
+
+    $sql = "INSERT INTO goods (name , cost, description, ord , img) VALUES ('$newName','$newCost','$newDescript','$newOrd','$newImg')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "New record created successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    mysqli_close($conn);
+}
