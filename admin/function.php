@@ -63,6 +63,7 @@ function updateGoods(){
     }
 
     mysqli_close($conn);
+    writeJSON();
 }
 function newGoods(){
     $conn = connect();
@@ -76,10 +77,46 @@ function newGoods(){
     $sql = "INSERT INTO goods (name , cost, description, ord , img) VALUES ('$newName','$newCost','$newDescript','$newOrd','$newImg')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo "New record created successfully  ";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
+    mysqli_close($conn);
+    writeJSON();
+}
+function writeJSON(){
+    $conn = connect();
+    $sql = "SELECT * FROM goods";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $out = array();
+        while($row = mysqli_fetch_assoc($result)) {
+            $out[$row["id"]] = $row;
+        }
+        $a = file_put_contents('../goods.json', json_encode($out));
+        echo "New item id  ".$a;
+    } else {
+        echo "0";
+    }
+    mysqli_close($conn);
+
+}
+function loadGoods(){
+    $conn = connect();
+    $sql = "SELECT * FROM goods";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $out = array();
+        while($row = mysqli_fetch_assoc($result)) {
+            $out[$row["id"]] = $row;
+        }
+        echo json_encode($out);
+       
+    } else {
+        echo "0";
+    }
     mysqli_close($conn);
 }
