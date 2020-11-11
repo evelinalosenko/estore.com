@@ -1,12 +1,12 @@
- var cart = {}; // корзина
-
+var cart = {};
 function init() {
-    //вычитуем файл goods.json
-    //$.getJSON("goods.json", goodsOut);
+    var hash = window.location.hash.substring(1);
+    console.log(hash);
     $.post(
         "admin/core.php",
         {
-             "action" : "loadGoods"
+             "action" : "loadSingleGoods", 
+             "id" : hash
         },
         goodsOut
     );
@@ -17,19 +17,18 @@ function goodsOut(data) {
     data = JSON.parse(data);
     console.log(data);
     var out='';
-    for (var key in data) {
+    var view = "";
+
          out +='<div class="cart">';
-         out +='<p class="name">'+data[key].name+'</p>';
-         out += '<img src="images/'+data[key].img+'" alt="">';
-         out +='<div class="cost">'+data[key].cost+'</div>';
-         out +='<a href="productView.html#'+[key]+'">View</a>';
-         out +='<button class="add-to-cart" data-id="'+[key]+'">Купить</button>';
+         out +='<p class="name">'+data.name+'</p>';
+         out += '<img src="images/'+data.img+'" alt="">';
+         out +='<div class="cost">'+data.cost+'</div>';
+         out +='<button class="add-to-cart" data-id="'+data.id+'">Купить</button>';
          out +='</div>';
-        
-        
-    }
+   
     $('.goods-out').html(out);
     $('.add-to-cart').on('click', addToCart);
+
 }
 
 function addToCart() {
@@ -47,6 +46,7 @@ function addToCart() {
     saveCart();
 }
 
+
 function saveCart() {
     //сохраняю корзину в localStorage
     localStorage.setItem('cart', JSON.stringify(cart)); //корзину в строку
@@ -54,11 +54,11 @@ function saveCart() {
 
 function showMiniCart() {
     //показываю мини корзину
-    /*var sum  = 0;
+    var sum  = 0;
     for (var key of Object.values(cart)) {
         alert(key);
         sum +=  key + cart[key] + '<br>';
-    }*/
+    }
     var out = "";
     for (var key in cart) {
         
