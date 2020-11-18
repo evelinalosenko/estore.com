@@ -18,16 +18,22 @@ function goodsOut(data) {
     console.log(data);
     var out='';
     var view = "";
-
-         out +='<div class="cart">';
-         out +='<p class="name">'+data.name+'</p>';
-         out += '<img src="images/'+data.img+'" alt="">';
-         out +='<div class="cost">'+data.cost+'</div>';
-         out +='<button class="add-to-cart" data-id="'+data.id+'">Купить</button>';
-         out +='</div>';
+    if(data != 0){
+        out +='<div class="cart">';
+        out +='<p class="name">'+data.name+'</p>';
+        out += '<img src="images/'+data.img+'" alt="">';
+        out +='<div class="cost">'+data.cost+'</div>';
+        out +='<button class="add-to-cart" data-id="'+data.id+'">Купить</button>';
+        out +='</div>';
+        
+        $('.add-to-cart').on('click', addToCart);
+    }
+    else{
+        $('.goods-out').html('no product');
+    }
    
-    $('.goods-out').html(out);
-    $('.add-to-cart').on('click', addToCart);
+    
+    
 
 }
 

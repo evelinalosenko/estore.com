@@ -20,9 +20,10 @@ function goodsOut(data) {
     for (var key in data) {
          out +='<div class="cart">';
          out +='<p class="name">'+data[key].name+'</p>';
-         out += '<img src="images/'+data[key].img+'" alt="">';
+         out += '<a class="productView" href="productView.html#'+[key]+'"><img src="images/'+data[key].img+'" alt=""></a>';
          out +='<div class="cost">'+data[key].cost+'</div>';
          out +='<a href="productView.html#'+[key]+'">View</a>';
+         out +='<br>'; 
          out +='<button class="add-to-cart" data-id="'+[key]+'">Купить</button>';
          out +='</div>';
         
