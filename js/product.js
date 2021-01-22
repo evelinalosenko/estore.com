@@ -1,6 +1,6 @@
 var cart = {};
 function init() {
-    var hash = window.location.hash.substring(1);
+    var hash = window.location.hash.substr(1);
     console.log(hash);
     $.post(
         "admin/core.php",
@@ -19,22 +19,24 @@ function goodsOut(data) {
     var out='';
     var view = "";
     if(data != 0){
-        out +='<div class="cart">';
+        out +='<div class="left-column">';
+        out +='<img class="img" src="images/'+data.img+'" alt="">';
+        out +='</div>';
+        out +='<div class="right-column">';
         out +='<p class="name">'+data.name+'</p>';
-        out += '<img src="images/'+data.img+'" alt="">';
+        out +='<div class="descrip">'+data.description+'</div>';
         out +='<div class="cost">'+data.cost+'</div>';
+        
         out +='<button class="add-to-cart" data-id="'+data.id+'">Купить</button>';
         out +='</div>';
+        
+        $('.goods-out').html(out);
         
         $('.add-to-cart').on('click', addToCart);
     }
     else{
         $('.goods-out').html('no product');
     }
-   
-    
-    
-
 }
 
 function addToCart() {

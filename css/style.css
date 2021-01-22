@@ -2,6 +2,8 @@ body {
     background-color: #d5cfc3;
     height: 100%;
     margin: 0;
+    padding: 0;
+    
 }
 @media only screen and (max-device-width: 1366px) {
   .mainImg {
@@ -16,33 +18,33 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .cart {
     background-color: #f5f1f0;
-    width: 250px;
-    height: 340px;
     border: 1px solid black;
-    margin: 30px;
+    margin: auto;
     float: left;
     text-align: center;
-    padding: 20px;
+    
 }
 .cart .name {
-    font-size: 1.4rem;
-    font-weight: bold;
+    font-family: 'Roboto', 'Lucida Sans Unicode', Helvetica, sans-serif;
     text-transform: uppercase;
-    margin-bottom: 30px;
+    margin: 5px;
 }
 .cart .cost {
     font-size: 1.3rem;
-    margin: 30px 0;
+    margin: 6px 0;
 }
 .cart .add-to-cart {
-    font-size: 1.1rem;
-    background: black;
+    font-family: 'Roboto', 'Lucida Sans Unicode', Helvetica, sans-serif;
+    text-transform: uppercase;
+    background: grey; opacity:0.6;
     color: white;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border: none;
     cursor: pointer;
+    margin: 6px;
 }
 .cart .add-to-cart:hover {
     background: cadetblue;
@@ -51,11 +53,10 @@ body {
     background: red;
 }
 .goods-out {
-
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    
-    
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(3,minmax(180px,1fr));
+    padding: 20px;
 }
 .goods-out::after {
     content: "";
@@ -81,9 +82,12 @@ body {
     letter-spacing: 10px;
 }
 .footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
   padding: 20px;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 60px;
 }
 @media screen and (max-width: 400px) {
   .topnav a {
@@ -113,10 +117,41 @@ body {
   background-color: #ddd;
   color: black;
 }
-.cursor{
-  position: absolute;
-  width:  100%;
-  bottom: 50px;
-  font-size: 18px;
-}
 
+.cursor{
+  position: absolute; 
+  width: 100%;
+  text-align: center;
+  bottom: 150px;
+  animation: mymove 3s infinite;
+}
+#icon{
+  width: 50px;
+  height: 40px;
+}
+@keyframes mymove {
+  50% {bottom: 10px;}
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.footer{
+    padding: 50px 40px;
+    background: #333;
+    color: #f2f2f2;
+    text-decoration: none;
+}
+.contact{
+    float: left;
+    color: #f2f2f2;
+}
+.follow{
+    float: center;
+    text-decoration-line: none;
+    color: aliceblue;
+    
+}
+.policies{
+    float: right;
+}

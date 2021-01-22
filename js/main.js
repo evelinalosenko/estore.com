@@ -1,16 +1,30 @@
- var cart = {}; // корзина
+var cart = {}; // корзина
 
-function init() {
+
+var type;
+
+
+ 
+function init(d) {
+    
     //вычитуем файл goods.json
     //$.getJSON("goods.json", goodsOut);
+    
+    type = d.getAttribute("data-id");
+    if(type == 0){
+        type = '';
+    }
     $.post(
         "admin/core.php",
         {
-             "action" : "loadGoods"
+             "action" : "loadGoods",
+             "type" : type
         },
         goodsOut
     );
+    
 }
+
 
 function goodsOut(data) {
     // вывод на страницу
@@ -19,18 +33,16 @@ function goodsOut(data) {
     var out='';
     for (var key in data) {
          out +='<div class="cart">';
-         out +='<p class="name">'+data[key].name+'</p>';
          out += '<a class="productView" href="productView.html#'+[key]+'"><img src="images/'+data[key].img+'" alt=""></a>';
-         out +='<div class="cost">'+data[key].cost+'</div>';
-         out +='<a href="productView.html#'+[key]+'">View</a>';
-         out +='<br>'; 
-         out +='<button class="add-to-cart" data-id="'+[key]+'">Купить</button>';
+         out +='<p class="name">'+data[key].name+'</p>';
+         out +='<div class="cost">'+data[key].cost+' EUR</div>'; 
+         out +='<button class="add-to-cart" data-id="'+[key]+'">ADD to basket</button>';
          out +='</div>';
-        
-        
     }
+    
     $('.goods-out').html(out);
     $('.add-to-cart').on('click', addToCart);
+    
 }
 
 function addToCart() {
@@ -48,6 +60,7 @@ function addToCart() {
     saveCart();
 }
 
+
 function saveCart() {
     //сохраняю корзину в localStorage
     localStorage.setItem('cart', JSON.stringify(cart)); //корзину в строку
@@ -55,18 +68,20 @@ function saveCart() {
 
 function showMiniCart() {
     //показываю мини корзину
-    /*var sum  = 0;
-    for (var key of Object.values(cart)) {
-        alert(key);
-        sum +=  key + cart[key] + '<br>';
-    }*/
-    var out = "";
+
+    /*var out = "";
     for (var key in cart) {
         
-        out +=  key + '==' + cart[key] + '<br>';
-        //console.log(key.name);
+        out +=  key + '==' + cart[key] + '<br>'; // pokazivaet summu kashdevo tovara odelno
     }
-    $('.mini-cart').html(out);
+    $('.mini-cart').html(out);*/
+    var sum = 0;
+    for(var key of Object.values(cart)) { // summiruet vse dobavlenie tovari
+        sum += key;
+    }
+     $('.mini-cart').html('CART' + ' (' + sum + ')');
+
+    
 }
 
 function loadCart() {
@@ -78,7 +93,24 @@ function loadCart() {
     }
 }
 
+/*window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  // 20 is an arbitrary number here, just to make you think if you need the prevScrollpos variable:
+  if (currentScrollPos > 20) {
+    // I am using 'display' instead of 'top':
+    document.getElementById("cursor").style.display = "none";
+  } else {
+    document.getElementById("cursor").style.display = "initial";
+  }
+}*/
+
 $(document).ready(function () {
     init();
     loadCart();
+    
+    
 });
+
+
+

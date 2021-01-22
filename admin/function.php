@@ -105,6 +105,11 @@ function writeJSON(){
 }
 function loadGoods(){
     $conn = connect();
+    //$type = $_POST['type'];
+    //$sql = '';
+    /*if($type != ''){
+        $sql = "SELECT * FROM goods WHERE type = '$type'";
+    }*/
     $sql = "SELECT * FROM goods";
     $result = mysqli_query($conn, $sql);
 
@@ -120,6 +125,46 @@ function loadGoods(){
     }
     mysqli_close($conn);
 }
+/*function loadByType(){
+    $conn = connect();
+    $type = $_POST['type'];
+    
+    if($type == ''){
+        $sql = "SELECT * FROM goods WHERE type = '$type'";
+    }
+    
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $out = array();
+        while($row = mysqli_fetch_assoc($result)) {
+            $out[$row["id"]] = $row;
+        }
+        echo json_encode($out);
+       
+    } else {
+        echo "0";
+    }
+    mysqli_close($conn);
+}/*
+/*function loadByType(){
+    $type = $_POST['type'];
+    $conn = connect();
+    $sql = "SELECT * FROM goods WHERE type = 'board'";
+    $result = mysqli_query($conn, $sql);
+
+   if (mysqli_num_rows($result) > 0) {
+        $out = array();
+        while($row = mysqli_fetch_assoc($result)) {
+            $out[$row["type"]] = $row;
+        }
+        echo json_encode($out);
+       
+    } else {
+        echo "0";
+    }
+    mysqli_close($conn);
+}*/
 function loadSingleGoods(){
     $id = $_POST['id'];
     $conn = connect();

@@ -17,6 +17,9 @@ switch ($action){
     case 'loadGoods':
         loadGoods();
         break;
+    //case 'loadByType':
+       // loadByType();
+       // break;
     case 'loadSingleGoods':
         loadSingleGoods();
         break;
